@@ -1,0 +1,33 @@
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+
+  <select {{ attributes.addClass(classes) }} onchange="window.location.href=this.value"
+    {% if configuration.display.icons %}
+    style="
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: url({{ link_active.icon }}) no-repeat {{ configuration.display.icon_alignment }} center;
+      height: {{ configuration.display.icon_height }}px;
+      padding-{{ configuration.display.icon_alignment }}: calc({{ configuration.display.icon_height }}px * 1.5);
+      {% if configuration.display.icon_alignment == 'left' %}
+        padding: 0 10px 0 calc({{ configuration.display.icon_height }}px * 1.5);
+      {% else %}
+        padding: 0 calc({{ configuration.display.icon_height }}px * 1.5) 0 10px;
+      {% endif %}
+    {% endif %} ">
+    {% for langcode, language in links %}
+      {% set current_language = language.current_language %}
+      <option value="{{ language.uri }}" {% if langcode == language.current_langcode %}selected{% endif %}>
+        {% if configuration.display.show.lang_code != "0"  %}
+          {{ language.langcode }}
+        {% endif %}
+        {% if configuration.display.show.lang_name != "0" %}
+          {{ language.title }}
+        {% endif %}
+      </option>
+    {% endfor %}
+  </select>
+
+{% endif %}

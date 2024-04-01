@@ -1,0 +1,16 @@
+# Schema for the configuration files of the Advanced Language Selector module.
+advanced_language_selector.settings:
+  type: config_object
+  label: 'Advanced Language Selector settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'
+
+block.settings.advanced_language_selector_block:
+  type: block_settings
+  label: 'Language selector block block'
+  mapping:
+    foo:
+      type: string
+      label: Foo

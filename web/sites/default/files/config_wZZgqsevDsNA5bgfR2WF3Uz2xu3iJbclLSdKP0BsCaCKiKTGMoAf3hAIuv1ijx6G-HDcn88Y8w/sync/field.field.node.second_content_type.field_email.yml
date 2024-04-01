@@ -1,0 +1,25 @@
+uuid: 53773652-9e03-4c3b-ae4e-d7f928bc2536
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.second_content_type
+  module:
+    - unique_content_field_validation
+third_party_settings:
+  unique_content_field_validation:
+    unique: true
+    unique_text: ''
+id: node.second_content_type.field_email
+field_name: field_email
+entity_type: node
+bundle: second_content_type
+label: Email
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

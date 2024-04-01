@@ -1,0 +1,70 @@
+id: 'bootstrap_list_group'
+title: 'Bootstrap List Group'
+theme: 'block__language_selector__bootstrap_list_group'
+templates_location: '/templates'
+libraries: []
+properties:
+  bootstrap_list_group:
+    title: 'Bootstrap List Group'
+    type: 'details'
+    open: true
+    states:
+      visible:
+        ':input[name="settings[look_and_feel][theme]"]':
+          value: 'bootstrap_list_group'
+    properties:
+      general:
+        title: 'General'
+        type: 'fieldgroup'
+        properties:
+          css:
+            title: 'Enter custom css class for the component'
+            type: 'textfield'
+          text_transformation:
+            title: 'Text transformation'
+            type: 'select'
+            default_value: [ 'default' ]
+            options:
+              default: 'Default'
+              upper: 'Upper case'
+              lower: 'Lower case'
+              capitalize: 'Capitalize'
+          load_external_bootstrap:
+            title: 'Load external bootstrap library (check this only if your theme is not a bootstrap based theme)'
+            type: 'checkbox'
+            default_value: false
+          external_bootstrap_library:
+            type: 'hidden'
+            default_value: 'advanced_language_selector/bootstrap'
+      display:
+        title: 'Display options'
+        type: 'fieldset'
+        properties:
+          items:
+            title: 'Display options'
+            type: 'fieldgroup'
+            properties:
+              show:
+                title: 'Select items to display (select one at least)'
+                type: 'checkboxes'
+                default_value: [ 'icons', 'lang_code' ]
+                states:
+                  required:
+                    ':input[name="settings[look_and_feel][theme]"]':
+                      value: 'bootstrap_list_group'
+                required: true
+                options:
+                  icons: 'Icons'
+                  lang_code: 'Language code'
+                  lang_name: 'Language name'
+              icon_height:
+                title: 'Flag icon height (px)'
+                type: 'number'
+                default_value: 25
+              icon_alignment:
+                title: 'Icon alignment'
+                type: 'select'
+                default_value: [ 'left' ]
+                options:
+                  left: 'Left'
+                  right: 'Right'

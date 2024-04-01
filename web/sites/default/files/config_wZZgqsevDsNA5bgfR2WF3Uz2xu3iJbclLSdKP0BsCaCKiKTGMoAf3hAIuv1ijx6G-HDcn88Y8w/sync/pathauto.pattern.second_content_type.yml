@@ -1,0 +1,22 @@
+uuid: eea879c2-d5e1-4c8e-9d5f-72b18c819027
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: second_content_type
+label: 'Second Content Type'
+type: 'canonical_entities:node'
+pattern: 'second-content-type/[node:nid]'
+selection_criteria:
+  274b1a0d-19b4-4d39-acfc-0979652cacd7:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 274b1a0d-19b4-4d39-acfc-0979652cacd7
+    context_mapping:
+      node: node
+    bundles:
+      second_content_type: second_content_type
+selection_logic: and
+weight: -5
+relationships: {  }

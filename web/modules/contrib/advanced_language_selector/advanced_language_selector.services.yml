@@ -1,0 +1,7 @@
+services:
+  advanced_language_selector.service:
+    class: Drupal\advanced_language_selector\Services\AdvancedLanguageSelectorService
+    arguments: ['@request_stack', '@module_handler', '@config.factory', '@language_manager']
+  advanced_language_selector.style_manager:
+    class: Drupal\advanced_language_selector\Services\StyleManager
+    arguments: ['@module_handler', '@file_system']

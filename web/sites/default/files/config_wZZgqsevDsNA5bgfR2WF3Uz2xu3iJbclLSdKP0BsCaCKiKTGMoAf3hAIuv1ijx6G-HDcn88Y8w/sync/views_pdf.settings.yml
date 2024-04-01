@@ -1,0 +1,53 @@
+_core:
+  default_config_hash: ypBDO_GFDesp_YzRx0niu6W6ju1lxw4E-qUkMMi_wsU
+views_pdf_template_path: 'public://views_pdf_templates/'
+page_details_open: null
+default_page_format: A4
+default_page_format_custom: ''
+default_page_orientation: P
+unit: mm
+margin_left: '15'
+margin_right: '15'
+margin_top: '15'
+margin_bottom: '15'
+leading_template: null
+template: null
+succeed_template: null
+right_to_left: 0
+default_font_family: helvetica
+default_font_style:
+  b: 0
+  i: 0
+  u: 0
+  d: 0
+  o: 0
+default_font_size: '11'
+default_text_align: L
+default_font_color: '333333'
+default_text_hyphenate: none
+header_margin: '1'
+header_font_family: helvetica
+header_font_style:
+  b: 0
+  i: 0
+  u: 0
+  d: 0
+  o: 0
+header_font_size: '12'
+header_text_align: C
+header_font_color: '333333'
+footer_spacing: '1'
+footer_font_family: helvetica
+footer_font_style:
+  b: 0
+  i: 0
+  u: 0
+  d: 0
+  o: 0
+footer_font_size: '12'
+footer_text_align: C
+footer_font_color: '333333'
+leading_header: 0
+leading_footer: 0
+succeed_header: 0
+succeed_footer: 0

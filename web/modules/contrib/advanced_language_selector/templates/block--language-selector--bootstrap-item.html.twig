@@ -1,0 +1,31 @@
+<span>
+  {% set display = selected ? configuration.display.selected_item : configuration.display.items %}
+  {% if display.show.icons != "0" and display.icon_alignment == 'left' %}
+    <img src="{{ item.icon }}" height="{{ display.icon_height }}" alt="{{ 'Flag of '~item.langcode | trans }}" />
+  {% endif %}
+  {% if display.show.lang_code != "0"  %}
+    {% if configuration.general.text_transformation == 'upper' %}
+      {{ item.langcode|upper }}
+    {% elseif configuration.general.text_transformation == "lower" %}
+      {{ item.langcode|lower }}
+    {% elseif configuration.general.text_transformation == "capitalize" %}
+      {{ item.langcode|capitalize }}
+    {% else %}
+      {{ item.langcode }}
+    {% endif %}
+  {% endif %}
+  {% if display.show.lang_name != "0" %}
+    {% if configuration.general.text_transformation == "upper" %}
+      {{ item.title|upper }}
+    {% elseif configuration.general.text_transformation == "lower" %}
+      {{ item.title|lower }}
+    {% elseif configuration.general.text_transformation == "capitalize" %}
+      {{ item.title|capitalize }}
+    {% else %}
+      {{ item.title }}
+    {% endif %}
+  {% endif %}
+  {% if display.show.icons != "0" and display.icon_alignment == 'right' %}
+    <img src="{{ item.icon }}" height="{{ display.icon_height }}" alt="{{ 'Flag of '~item.langcode | trans }}" />
+  {% endif %}
+</span>

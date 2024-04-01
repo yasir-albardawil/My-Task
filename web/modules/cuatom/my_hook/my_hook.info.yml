@@ -1,0 +1,5 @@
+name: My Hook
+type: module
+description: 'My Hook'
+package: Custom
+core_version_requirement: ^9 | ^10

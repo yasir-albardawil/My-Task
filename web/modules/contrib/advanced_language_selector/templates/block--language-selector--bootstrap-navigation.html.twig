@@ -1,0 +1,27 @@
+
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+  {% set orientation = configuration.general.orientation == 'vertical' ? 'flex-column' : '' %}
+  {% set style = configuration.general.style == 'none' ? '' : configuration.general.style %}
+
+  <div{{ attributes.addClass(classes) }}>
+
+    <ul class="nav {{ orientation }} {{ style }}">
+      {% for langcode, item in links %}
+        {% set active = langcode == item.current_langcode ? 'active' : '' %}
+        <li class="nav-item">
+          <a class="nav-link {{ active }}" aria-current="page" href="{{ item.uri }}">
+            {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: item, selected: false } %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

@@ -1,0 +1,20 @@
+uuid: b0cfaa4a-332e-45da-91a9-1ae0c8a1496a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.second_content_type
+  module:
+    - path
+id: node.second_content_type.path
+field_name: path
+entity_type: node
+bundle: second_content_type
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

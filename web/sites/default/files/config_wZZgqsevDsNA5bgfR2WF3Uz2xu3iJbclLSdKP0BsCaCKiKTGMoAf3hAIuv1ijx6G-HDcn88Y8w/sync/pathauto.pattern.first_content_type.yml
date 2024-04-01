@@ -1,0 +1,22 @@
+uuid: 8b9679f7-9fab-4e2b-886b-ac11642ead86
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: first_content_type
+label: 'First Content Type'
+type: 'canonical_entities:node'
+pattern: 'first-content-type/[node:nid]'
+selection_criteria:
+  a8b2c37b-9bc6-473e-a3a6-ee2f84901931:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: a8b2c37b-9bc6-473e-a3a6-ee2f84901931
+    context_mapping:
+      node: node
+    bundles:
+      first_content_type: first_content_type
+selection_logic: and
+weight: -5
+relationships: {  }

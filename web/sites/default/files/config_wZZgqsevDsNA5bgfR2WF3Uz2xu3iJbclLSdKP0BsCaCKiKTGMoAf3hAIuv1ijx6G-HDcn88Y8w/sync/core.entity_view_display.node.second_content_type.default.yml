@@ -1,0 +1,63 @@
+uuid: 2600ef02-ef0f-447e-a706-a97793eada41
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.second_content_type.field_email
+    - field.field.node.second_content_type.field_full_name
+    - field.field.node.second_content_type.field_id_number
+    - field.field.node.second_content_type.field_phone
+    - field.field.node.second_content_type.field_summary
+    - node.type.second_content_type
+  module:
+    - user
+id: node.second_content_type.default
+targetEntityType: node
+bundle: second_content_type
+mode: default
+content:
+  field_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_full_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_id_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_summary:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

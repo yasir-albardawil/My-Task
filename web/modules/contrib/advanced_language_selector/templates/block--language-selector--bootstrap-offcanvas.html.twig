@@ -1,0 +1,44 @@
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+  {% set id = configuration.general.id|clean_class %}
+  {% set position = configuration.general.position %}
+  {% set orientation = '' %}
+  {% if position in ['offcanvas-start', 'offcanvas-end'] %}
+    {% set orientation = 'flex-column' %}
+  {% endif %}
+
+  <div{{ attributes.addClass(classes) }}>
+
+    <a class="btn {{ configuration.display.selected_item.css }}" data-bs-toggle="offcanvas" href="#{{ id }}" role="button" aria-controls="{{ id }}">
+      {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: link_active, selected: true } %}
+    </a>
+
+    <div class="offcanvas {{ position }}" tabindex="-1" id="{{ id }}" aria-labelledby="{{ id }}Label">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="{{ id }}Label">{{ 'Select language'|trans }}</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="{{ 'Close'|trans }}"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <ul class="nav nav-pills {{ orientation }}">
+          {% for langcode, item in links %}
+            {% set active = langcode == item.current_langcode ? 'active' : '' %}
+            <li class="nav-item">
+              <a class="nav-link {{ active }}" aria-current="page" href="{{ item.uri }}">
+                {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: item, selected: false } %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+    </div>
+
+  </div>
+
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

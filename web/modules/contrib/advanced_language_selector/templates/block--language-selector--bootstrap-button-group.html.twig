@@ -1,0 +1,23 @@
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+
+  <div{{ attributes.addClass(classes) }}>
+
+{#    ACTIVE: {{ dump(link_active) }}#}
+
+    <div class="btn-group" role="group" aria-label="{{ 'Language selector'|trans }}">
+      {% for langcode, item in links %}
+        {% set active = langcode == item.current_langcode ? 'active' : '' %}
+        <a href="{{ item.uri }}" class="btn {{ configuration.display.items.css }} {{ active }}" aria-current="page">
+          {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: item, selected: false } %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

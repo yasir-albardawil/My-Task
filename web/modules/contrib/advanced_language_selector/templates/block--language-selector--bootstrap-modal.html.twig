@@ -1,0 +1,45 @@
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+  {% set id = configuration.general.id|clean_class %}
+
+  <div{{ attributes.addClass(classes) }}>
+
+    {# Button trigger modal #}
+    <button type="button" class="btn {{ configuration.display.selected_item.css }}" data-bs-toggle="modal" data-bs-target="#{{ id }}">
+      {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: link_active, selected: true } %}
+    </button>
+
+    {# Modal #}
+    <div class="modal fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ 'Language selector'|trans }}" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="{{ id }}ModalLabel">{{ 'Select language'|trans }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'Close'|trans }}"></button>
+          </div>
+          <div class="modal-body">
+            <div class="list-group">
+              {% set display = configuration.display.items %}
+              {% for langcode, item in links %}
+                {% if langcode == item.current_langcode %}
+                  <a href="{{ item.uri }}" class="list-group-item list-group-item-action active" aria-current="true">
+                {% else %}
+                  <a href="{{ item.uri }}" class="list-group-item list-group-item-action">
+                {% endif %}
+                  {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: item, selected: false } %}
+                </a>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

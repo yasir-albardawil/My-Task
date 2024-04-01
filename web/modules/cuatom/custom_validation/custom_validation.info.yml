@@ -1,0 +1,5 @@
+name: Custom validation
+type: module
+description: validation of entities
+core_version_requirement: ^9 | ^10
+package: custom

@@ -1,0 +1,19 @@
+uuid: fcd813f4-3d58-4138-ba2b-419bb3ae4c36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_full_name
+    - node.type.first_content_type
+id: node.first_content_type.field_full_name
+field_name: field_full_name
+entity_type: node
+bundle: first_content_type
+label: 'Full Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

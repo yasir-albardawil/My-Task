@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for the Advanced Language Selector module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function advanced_language_selector_theme($existing, $type, $theme, $path) {
+  // Register here all the defined styles.
+  // For each style must exist a template with this name:
+  // block--language-selector--[STYLE ID].html.twig.
+  $styles = [];
+  /** @var \Drupal\advanced_language_selector\Services\StyleManagerInterface $styleManager */
+  $styleManager = \Drupal::service('advanced_language_selector.style_manager');
+  $availableStyles = $styleManager->getAvailableStyles();
+  foreach ($availableStyles as $style) {
+    $theme = $style['theme'];
+    $styles[$theme] = [
+      'variables' => [
+        'links' => NULL,
+        'link_active' => NULL,
+        'templates_location' => NULL,
+        'configuration' => NULL,
+        'attributes' => NULL,
+        'set_active_class' => NULL,
+      ],
+    ];
+  }
+  return $styles;
+}

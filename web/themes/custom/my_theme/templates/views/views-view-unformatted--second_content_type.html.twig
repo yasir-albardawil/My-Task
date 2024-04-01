@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="w-100">
+
+  {% for row in rows %}
+    {% set nid = view.style_plugin.getField(loop.index0, 'nid')|striptags|trim|trim %}
+    <div class="row mt-4">
+      <div class="col-lg-12 col-md-4 col-4 border p-2 rounded-2">
+        <div class="d-flex gap-2 align-items-center">
+          <h6 class="text-primary-emphasis h6 fw-bold">{{ 'Title:'|t }}</h6>
+          <p class="mb-2">
+            <a class="link-primary link-underline h6 text-decoration-underline fw-bold"
+               title="{{ 'View the second content type as a PDF'|t }}"
+               href="{{ path('entity.node.canonical', {'node': nid }) }}">{{ view.style_plugin.getField(loop.index0, 'title')|striptags|trim }}</a>
+          </p>
+        </div>
+        <div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <div class="d-flex gap-2 align-items-center">
+              <h6 class="text-primary-emphasis h6 fw-bold">{{ 'Full Name:'|t }}</h6>
+              <p class="mb-2">{{ view.style_plugin.getField(loop.index0, 'field_full_name')|striptags|trim }}</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <div class="d-flex gap-2 align-items-center">
+              <h6 class="text-primary-emphasis h6 fw-bold">{{ 'ID Number:'|t }}</h6>
+              <p class="mb-2">{{ view.style_plugin.getField(loop.index0, 'field_id_number')|striptags|trim }}</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <div class="d-flex gap-2 align-items-center">
+              <h6 class="text-primary-emphasis h6 fw-bold">{{ 'Email:'|t }}</h6>
+              <p class="mb-2">{{ view.style_plugin.getField(loop.index0, 'field_email')|striptags|trim }}</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <div class="d-flex gap-2 align-items-center">
+              <h6 class="text-primary-emphasis h6 fw-bold">{{ 'Phone:'|t }}</h6>
+              <p class="mb-2">{{ view.style_plugin.getField(loop.index0, 'field_phone')|striptags|trim }}</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <div class="d-flex gap-2 align-items-center">
+              <h6 class="text-primary-emphasis h6 fw-bold">{{ 'Summary:'|t }}</h6>
+              <p class="mb-2">{{ view.style_plugin.getField(loop.index0, 'field_summary')|striptags|trim }}</p>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-4 col-4">
+            <a
+              class="text-primary-emphasis link-primary link-underline h6 fw-bold text-decoration-none fw-bold d-flex gap-1"
+              download
+              href="{{ path('view.second_content_type.pdf_1', {'arg_0': nid }) }}"><i
+                class="fa-solid fa-file-pdf"></i>
+              <div>{{ 'Download PDF'|t }}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

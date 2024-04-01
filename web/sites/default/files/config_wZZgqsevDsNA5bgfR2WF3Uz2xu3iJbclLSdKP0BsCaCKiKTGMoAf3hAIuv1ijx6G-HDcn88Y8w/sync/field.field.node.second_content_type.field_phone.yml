@@ -1,0 +1,25 @@
+uuid: 51d08432-0685-4e12-b378-1536e286e291
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone
+    - node.type.second_content_type
+  module:
+    - unique_content_field_validation
+third_party_settings:
+  unique_content_field_validation:
+    unique: true
+    unique_text: ''
+id: node.second_content_type.field_phone
+field_name: field_phone
+entity_type: node
+bundle: second_content_type
+label: Phone
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

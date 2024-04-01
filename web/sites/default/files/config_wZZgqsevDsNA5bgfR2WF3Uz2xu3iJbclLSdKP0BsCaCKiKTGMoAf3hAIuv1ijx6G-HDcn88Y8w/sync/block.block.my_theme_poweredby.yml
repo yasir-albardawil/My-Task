@@ -1,0 +1,25 @@
+uuid: be70153e-753a-4bd4-9d24-fe3082c86993
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:17556868-c62e-4730-b90f-cb2e1f2480d2'
+  module:
+    - block_content
+  theme:
+    - my_theme
+id: my_theme_poweredby
+theme: my_theme
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:17556868-c62e-4730-b90f-cb2e1f2480d2'
+settings:
+  id: 'block_content:17556868-c62e-4730-b90f-cb2e1f2480d2'
+  label: 'Powered by'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

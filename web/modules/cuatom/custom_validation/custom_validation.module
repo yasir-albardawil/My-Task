@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_validation.module..
+ */
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function custom_validation_entity_bundle_field_info_alter(&$fields, \Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle)
+{
+
+  if ($bundle === 'first_content_type' || $bundle === 'second_content_type') {
+    if (isset($fields['field_id_number'])) {
+      $fields['field_id_number']->setPropertyConstraints('value', array(
+        'Regex' => array(
+          'pattern' => '/^\d+$/',
+          'message' => 'ID Number accepts only numbers.',
+        )));
+    }
+  }
+
+}

@@ -1,0 +1,31 @@
+uuid: 174de179-0887-4848-8cd6-9c1f70c2117b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.first_content_type.field_email
+    - field.field.node.first_content_type.field_full_name
+    - field.field.node.first_content_type.field_id_number
+    - field.field.node.first_content_type.field_phone
+    - field.field.node.first_content_type.field_summary
+    - node.type.first_content_type
+  module:
+    - user
+id: node.first_content_type.teaser
+targetEntityType: node
+bundle: first_content_type
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_email: true
+  field_full_name: true
+  field_id_number: true
+  field_phone: true
+  field_summary: true
+  langcode: true

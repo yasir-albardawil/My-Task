@@ -1,0 +1,12 @@
+id: 'look_and_feel'
+title: 'Look and Feel'
+properties:
+  look_and_feel:
+    title: 'Look and Feel'
+    type: 'fieldset'
+    properties:
+      theme:
+        title: 'Theme'
+        type: 'select'
+        required: true
+        # Options will be added by the StyleManager (getStyleSelector)

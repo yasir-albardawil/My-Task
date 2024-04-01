@@ -1,0 +1,28 @@
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector' ] %}
+  {% set configured_classes = [ configuration.general.css|clean_class ] %}
+  {% set id = configuration.general.id|clean_class %}
+
+  <div class="advanced-language-selector"  {# attributes.addClass(classes) #}>
+    <div class="dropdown">
+      <button class="btn dropdown-toggle {{ configuration.display.selected_item.css }}" type="button" id="{{ id }}" data-bs-toggle="dropdown" aria-expanded="false">
+        {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: link_active, selected: true } %}
+      </button>
+
+      <ul class="dropdown-menu">
+        {% for langcode, language in links %}
+          <li>
+            <a class="dropdown-item" href="{{ language.uri }}">
+              {% include templates_location~'/block--language-selector--bootstrap-item.html.twig' with { item: language, selected: false } %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

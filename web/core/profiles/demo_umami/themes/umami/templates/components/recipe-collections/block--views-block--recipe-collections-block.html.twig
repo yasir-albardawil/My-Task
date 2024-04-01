@@ -1,0 +1,10 @@
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {{ attach_library('umami/recipe-collections') }}
+  <div class="container">
+    {% for row in rows %}
+    <li{{ row.attributes }}>{{ row.content }}</li>
+    {% endfor %}
+  </div>
+{% endblock %}

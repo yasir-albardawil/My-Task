@@ -1,0 +1,117 @@
+<?php
+
+use Drupal\node\Entity\Node;
+use Drupal\views\ViewExecutable;
+
+
+function my_hook_node_insert(\Drupal\node\NodeInterface $node)
+{
+  if ($node->bundle() == 'first_content_type') {
+    addSecondContentTypeRequest($node);
+  }
+}
+
+/**
+ * @return void
+ */
+function addSecondContentTypeRequest($node): void
+{
+  global $base_url;
+
+  $data = [
+    'type' => [
+      [
+        'target_id' => 'second_content_type',
+        'target_type' => 'node_type'
+      ]
+    ],
+    'title' => [
+      [
+        'value' => $node->get('title')->value
+      ]
+    ],
+    'field_full_name' => [
+      [
+        'value' => $node->get('field_full_name')->value
+      ]
+    ],
+    'field_email' => [
+      [
+        'value' => $node->get('field_email')->value
+      ]
+    ],
+    'field_id_number' => [
+      [
+        'value' => $node->get('field_id_number')->value
+      ]
+    ],
+    'field_phone' => [
+      [
+        'value' => $node->get('field_phone')->value
+      ]
+    ],
+    'field_summary' => [
+      [
+        'value' => $node->get('field_summary')->value
+      ]
+    ]
+  ];
+
+//  $url = \Drupal\Core\Url::fromUri('base:/node?_format=json', ['absolute' => TRUE])->toString();
+  $auth = \Drupal::config('basic.auth')->get('credentials');
+
+  \Drupal::httpClient()->post("$base_url/node?_format=json", [
+    'verify' => false,
+    'auth' => $auth,
+    'body' => json_encode($data),
+    'headers' => [
+      'Content-Type' => 'application/json'
+    ],
+  ])->getBody()->getContents();
+}
+
+/**
+ * @param $result
+ * @return void
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function addSecondContentType($result): void
+{
+  $current_user = \Drupal::currentUser();
+  $uid = $current_user->id();
+  $second_content_type = Node::create(['type' => 'second_content_type']);
+  $second_content_type->set('title', 'second_content_type');
+  $second_content_type->set('uid', $uid);
+  $second_content_type->set('field_full_name', $result['field_full_name'][0]['value']);
+  $second_content_type->set('field_email', $result['field_email'][0]['value']);
+  $second_content_type->set('field_phone', $result['field_phone'][0]['value']);
+  $second_content_type->set('field_summary', $result['field_summary'][0]['value']);
+  $second_content_type->set('field_id_number', $result['field_id_number'][0]['value']);
+
+  $second_content_type->save();
+}
+
+// Implements hook_views_pre_render().
+function my_hook_views_pre_render(ViewExecutable $view)
+{
+  if ($view->id() == 'frontpage' && $view->current_display == 'page_1') {
+    $view->empty = [];
+  }
+}
+
+/**
+ * @return string
+ * @throws \GuzzleHttp\Exception\GuzzleException
+ */
+function getSessionToken(): string
+{
+  $url = \Drupal\Core\Url::fromUri('base:/session/token', ['absolute' => TRUE])->toString();
+
+  $response = \Drupal::httpClient()->get($url);
+
+  $user_csrf = $response->getBody()->getContents();
+
+  $csrf_token = trim($user_csrf);
+
+  return $csrf_token;
+}

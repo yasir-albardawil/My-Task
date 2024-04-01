@@ -1,0 +1,19 @@
+uuid: 97eebda5-7a91-4036-a94c-7e086c228974
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_full_name
+    - node.type.second_content_type
+id: node.second_content_type.field_full_name
+field_name: field_full_name
+entity_type: node
+bundle: second_content_type
+label: 'Full Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

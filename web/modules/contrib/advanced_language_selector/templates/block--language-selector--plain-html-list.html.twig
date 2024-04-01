@@ -1,0 +1,56 @@
+
+{% if links %}
+
+  {% set classes = [ 'advanced-language-selector', configuration.general.css|clean_class ] %}
+
+  <div{{ attributes.addClass(classes) }}>
+    <ul>
+      {% set display = configuration.display.items %}
+      {% for langcode, item in links %}
+        <li>
+          {% if langcode != item.current_langcode %}
+            <a href="{{ item.uri }}">
+          {% endif %}
+          <span>
+            {% if display.show.icons != "0" and display.icon_alignment == 'left' %}
+              <img src="{{ item.icon }}" height="{{ display.icon_height }}" alt="{{ 'Flag of '~item.langcode | trans }}" />
+            {% endif %}
+            {% if display.show.lang_code != "0"  %}
+              {% if configuration.general.text_transformation == 'upper' %}
+                {{ item.langcode|upper }}
+              {% elseif configuration.general.text_transformation == "lower" %}
+                {{ item.langcode|lower }}
+              {% elseif configuration.general.text_transformation == "capitalize" %}
+                {{ item.langcode|capitalize }}
+              {% else %}
+                {{ item.langcode }}
+              {% endif %}
+            {% endif %}
+            {% if display.show.lang_name != "0" %}
+              {% if configuration.general.text_transformation == "upper" %}
+                {{ item.title|upper }}
+              {% elseif configuration.general.text_transformation == "lower" %}
+                {{ item.title|lower }}
+              {% elseif configuration.general.text_transformation == "capitalize" %}
+                {{ item.title|capitalize }}
+              {% else %}
+                {{ item.title }}
+              {% endif %}
+            {% endif %}
+            {% if display.show.icons != "0" and display.icon_alignment == 'right' %}
+              <img src="{{ item.icon }}" height="{{ display.icon_height }}" alt="{{ 'Flag of '~item.langcode | trans }}" />
+            {% endif %}
+            </span>
+          {% if langcode != item.current_langcode %}
+            </a>
+          {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+  </div>
+
+{% endif %}
+
+{% if configuration.general.load_external_bootstrap %}
+  {{ attach_library(configuration.general.external_bootstrap_library) }}
+{% endif %}

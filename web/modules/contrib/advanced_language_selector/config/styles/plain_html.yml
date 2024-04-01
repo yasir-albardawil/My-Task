@@ -1,0 +1,57 @@
+id: 'plain_html'
+title: 'Plain HTML'
+theme: 'block__language_selector__select'
+templates_location: '/templates'
+libraries: []
+properties:
+  plain_html:
+    title: 'Plain HTML'
+    type: 'details'
+    open: true
+    states:
+      visible:
+        ':input[name="settings[look_and_feel][theme]"]':
+          value: 'plain_html'
+    properties:
+      general:
+        title: 'General'
+        type: 'fieldgroup'
+        properties:
+          css:
+            title: 'Enter custom css class for the component'
+            type: 'textfield'
+          uppercase:
+            title: 'Convert text to uppercase'
+            type: 'checkbox'
+            default_value: true
+      display:
+        title: 'Display options'
+        type: 'fieldset'
+        properties:
+          icons:
+            title: 'Show icons'
+            type: 'checkbox'
+            default_value: true
+          show:
+            title: 'Select items to display (select one at least)'
+            type: 'checkboxes'
+            states:
+              required:
+                ':input[name="settings[look_and_feel][theme]"]':
+                  value: 'plain_html'
+            required: true
+            default_value: ['lang_code']
+            options:
+              lang_code: 'Language code'
+              lang_name: 'Language name'
+          icon_height:
+            title: 'Flag icon height (px)'
+            type: 'number'
+            default_value: 25
+          icon_alignment:
+            title: 'Icon alignment'
+            type: 'select'
+            default_value: ['right']
+            options:
+              left: 'Left'
+              right: 'Right'

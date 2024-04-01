@@ -1,0 +1,25 @@
+uuid: a8b1d36d-1e71-4b86-9610-1a4d698e3618
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_id_number
+    - node.type.first_content_type
+  module:
+    - unique_content_field_validation
+third_party_settings:
+  unique_content_field_validation:
+    unique: true
+    unique_text: ''
+id: node.first_content_type.field_id_number
+field_name: field_id_number
+entity_type: node
+bundle: first_content_type
+label: 'ID number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
